@@ -5,6 +5,9 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product");
 const protect = require("../middleware/authMiddleware");
+const authorize = require("../middleware/roleMiddleware");
+
+
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
@@ -105,7 +108,7 @@ router.put("/:id", protect, upload.single("image"), async (req, res) => {
 });
 
 // DELETE product
-router.delete("/:id", protect, async (req, res) => {
+router.delete("/:id", protect, authorize("superadmin"), async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
