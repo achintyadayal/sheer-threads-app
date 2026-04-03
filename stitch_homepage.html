@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ARCHIVIST | Amber &amp; Obsidian</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#FFD700",
+                        "on-primary": "#1A1A1A",
+                        "background": "#1A1A1A",
+                        "on-background": "#E5E2E1",
+                        "surface": "#131313",
+                        "on-surface": "#E5E2E1",
+                        "surface-container": "#1C1B1B",
+                        "surface-container-low": "#161616",
+                        "outline": "#474747",
+                        "outline-variant": "#303030"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #1A1A1A;
+            color: #E5E2E1;
+        }
+        .noto-serif {
+            font-family: 'Noto Serif', serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-carousel {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        .animate-carousel:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-x-hidden min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl flex justify-between items-center px-8 h-20">
+<div class="flex items-center gap-4">
+<button class="text-[#FFD700] hover:text-[#FFE16D] transition-colors duration-300 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<div class="font-headline text-2xl font-bold tracking-widest text-[#FFD700] uppercase">
+            ARCHIVIST
+        </div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-8 text-[11px] font-label tracking-[0.2em] uppercase">
+<a class="text-[#FFD700] transition-colors duration-300" href="#">COLLECTIONS</a>
+<a class="text-[#E5E2E1] hover:text-[#FFD700] transition-colors duration-300" href="#">ARCHIVE</a>
+<a class="text-[#E5E2E1] hover:text-[#FFD700] transition-colors duration-300" href="#">BOUTIQUE</a>
+</nav>
+<button class="text-[#FFD700] hover:text-[#FFE16D] transition-colors duration-300 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-0">
+<!-- Hero Section -->
+<section class="relative w-full h-[884px] overflow-hidden bg-black flex items-center justify-center">
+<div class="absolute inset-0 opacity-60">
+<img class="w-full h-full object-cover grayscale" data-alt="Cinematic shot of a model in a black gown" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKlDUcjw_JZcS0UGWY_m53nL44Gth6e0mLZkg3XZwG1HbZSkXH6E8PJT6BQogyycJZyMzbc7N-fKpXsTSFodJcw7GAnhOcNqs7xzCLopozDA8igCa8tg8I4GnQyD_RY0zGfJPzTU7D0pqbpsyk183ElDhUBufsALXl5F5MCYhLEvn_SNCHOX-cdlxn6ec1my-WSRK9_QXaQyddFaN-bvf_BWZ3NofDCKN5Efi5UbtaKHEWDSJHI4LaWtj0ELEe5JlIB4a51OgEuV4"/>
+</div>
+<div class="relative z-10 text-center px-4">
+<h1 class="font-headline text-[clamp(2.5rem,8vw,5rem)] leading-none text-white tracking-tighter mb-8 max-w-4xl mx-auto">
+                    A SYMPHONY OF <span class="italic text-[#FFD700]">SHADOW</span> &amp; SILK
+                </h1>
+<button class="bg-[#FFD700] text-[#1A1A1A] px-12 py-4 font-label text-[12px] tracking-[0.2em] uppercase hover:bg-[#FFE16D] transition-all duration-400 scale-100 active:scale-95 font-bold">
+                    SHOP NOW
+                </button>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-[#FFD700]/50">
+<span class="material-symbols-outlined animate-bounce">keyboard_arrow_down</span>
+</div>
+</section>
+<!-- Latest Arrivals (Continuous Carousel) -->
+<section class="bg-surface-container-low py-32 overflow-hidden">
+<div class="px-8 mb-16 flex flex-col md:flex-row justify-between items-baseline">
+<h2 class="font-headline text-5xl tracking-tight text-[#FFD700]">Latest Arrivals</h2>
+<p class="font-label text-[11px] tracking-[0.2em] text-[#E5E2E1]/60 mt-4 md:mt-0 uppercase">RELEASE 0.24 / MONOCHROMATIC SERIES</p>
+</div>
+<div class="relative">
+<!-- Carousel Container -->
+<div class="animate-carousel">
+<!-- Set 1 -->
+<div class="flex gap-4 px-2">
+<!-- Product 1 -->
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnkqCQ1l9OVmNWnRxMLG-PvPPEASyToMKhmxPF1DEerhC32w0k5dNhURslqkYMdMcuIuOC1DZtJ7JPEObkz93pMd21UCVCp9PVYJ4wX5nNbCyGxywXF4dgJbcD2XzOD7zsjRE9x37YbnwvXGVmtr9oI7t-c83xR19DuLDHO4U1F5IRSGujYzb5G1hNkqWqTpyRz7G8s4xpVRCuBO8pIbRLdFJW9j9Gw6HSoI1waNNzdng0fDtgaDFjdB8vOQKNlAiGNKL8tIl1M3s"/>
+<div class="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">The Structured Drape</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">ASHTA KURTA</h3>
+<span class="font-headline text-sm">₹ 24,500</span>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCksmal925uETndgs_m52SpBeKBXk-VyRkU2PXDIkVNgSCvfRgU6g36_mlPh3c-syhCe3E9LfZ2i507TPHQcS_0JUeQXe3JuOj1f5U8FUSZEwN6130S7SKuw0e9xzVs1dnC-ggGAbhUxGGhpua_tLG4tQqOEuADN_cFo4UVz4kn1GgEsMDhNtndyLRio_pNXpFdSGULqzK1iisV1uh5EiSdZe5tsClR-2V2-yq-Be7vOC3QgDZFeYhIFCxMoQSaj4zZruYVjDKHvyY"/>
+<div class="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">Linen &amp; Shadow</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">NIMBUS SAREE</h3>
+<span class="font-headline text-sm">₹ 32,000</span>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJzTwcnI4FdQLKZzWkps4wyMaTCVdBd4BOKcz8adIsAJSynlLWyJDyDuEBxeMRtCJQKysBipTpz7V_LQebPsCjiHtTJgPzJkWz0rz6Obwrf-pq2Dp6NMb2bBUM2Pi0tzc6zmNbivF_7vnXMFITc01oENSvh3nY1HzQimfsuJh190jZf1OOB2YuH5HQiHvV4oA6f0VRUNS2tCubZpxeDEP5pXk5wKP06398MrvP_JQ-pcuaKdbB9-99UJqf8IW_2D1OmuWk5y-4FBA"/>
+<div class="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">Formal Rigor</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">COLUMN JACKET</h3>
+<span class="font-headline text-sm">₹ 45,500</span>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtn0-9meCThMK6hPFbuQkFwV83utv1Omn_awz6S9I32JAqJvoQm8rKE6UBGMJ3PFI-MVHafQuHIsce9UNSrSMFi7UFnzQDHaae9j83DYRfFPH3BlhtqgxQYJd04ISdB3y65El3kGqWKY80YVkCQNtUoHD5nn8afjbSItugRRcT46sCMRIDUwW96bw-R-sYsCE5OkQx-jW-h94I4tSYIbWySpmE4iW7UeMK9DIubuCbxDHcEi2VXjMSP-V4e2jgXQ05EbMbIfsCPuQ"/>
+<div class="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">Foundation Pieces</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">VOID TROUSER</h3>
+<span class="font-headline text-sm">₹ 18,900</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Duplicate Set for Continuous Loop -->
+<div class="flex gap-4 px-2">
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnkqCQ1l9OVmNWnRxMLG-PvPPEASyToMKhmxPF1DEerhC32w0k5dNhURslqkYMdMcuIuOC1DZtJ7JPEObkz93pMd21UCVCp9PVYJ4wX5nNbCyGxywXF4dgJbcD2XzOD7zsjRE9x37YbnwvXGVmtr9oI7t-c83xR19DuLDHO4U1F5IRSGujYzb5G1hNkqWqTpyRz7G8s4xpVRCuBO8pIbRLdFJW9j9Gw6HSoI1waNNzdng0fDtgaDFjdB8vOQKNlAiGNKL8tIl1M3s"/>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">The Structured Drape</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">ASHTA KURTA</h3>
+<span class="font-headline text-sm">₹ 24,500</span>
+</div>
+</div>
+</div>
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCksmal925uETndgs_m52SpBeKBXk-VyRkU2PXDIkVNgSCvfRgU6g36_mlPh3c-syhCe3E9LfZ2i507TPHQcS_0JUeQXe3JuOj1f5U8FUSZEwN6130S7SKuw0e9xzVs1dnC-ggGAbhUxGGhpua_tLG4tQqOEuADN_cFo4UVz4kn1GgEsMDhNtndyLRio_pNXpFdSGULqzK1iisV1uh5EiSdZe5tsClR-2V2-yq-Be7vOC3QgDZFeYhIFCxMoQSaj4zZruYVjDKHvyY"/>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">Linen &amp; Shadow</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">NIMBUS SAREE</h3>
+<span class="font-headline text-sm">₹ 32,000</span>
+</div>
+</div>
+</div>
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJzTwcnI4FdQLKZzWkps4wyMaTCVdBd4BOKcz8adIsAJSynlLWyJDyDuEBxeMRtCJQKysBipTpz7V_LQebPsCjiHtTJgPzJkWz0rz6Obwrf-pq2Dp6NMb2bBUM2Pi0tzc6zmNbivF_7vnXMFITc01oENSvh3nY1HzQimfsuJh190jZf1OOB2YuH5HQiHvV4oA6f0VRUNS2tCubZpxeDEP5pXk5wKP06398MrvP_JQ-pcuaKdbB9-99UJqf8IW_2D1OmuWk5y-4FBA"/>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">Formal Rigor</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">COLUMN JACKET</h3>
+<span class="font-headline text-sm">₹ 45,500</span>
+</div>
+</div>
+</div>
+<div class="w-[300px] bg-surface flex-shrink-0 group cursor-pointer border border-outline/10">
+<div class="relative aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtn0-9meCThMK6hPFbuQkFwV83utv1Omn_awz6S9I32JAqJvoQm8rKE6UBGMJ3PFI-MVHafQuHIsce9UNSrSMFi7UFnzQDHaae9j83DYRfFPH3BlhtqgxQYJd04ISdB3y65El3kGqWKY80YVkCQNtUoHD5nn8afjbSItugRRcT46sCMRIDUwW96bw-R-sYsCE5OkQx-jW-h94I4tSYIbWySpmE4iW7UeMK9DIubuCbxDHcEi2VXjMSP-V4e2jgXQ05EbMbIfsCPuQ"/>
+</div>
+<div class="p-6">
+<p class="font-label text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase">Foundation Pieces</p>
+<div class="flex justify-between items-center">
+<h3 class="font-headline text-lg text-[#FFD700]">VOID TROUSER</h3>
+<span class="font-headline text-sm">₹ 18,900</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Collection Section (Asymmetric Grid) -->
+<section class="py-32 bg-background border-y border-outline/10">
+<div class="max-w-[1400px] mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+<!-- Category 1: Embroidered -->
+<div class="md:col-span-7 relative group cursor-pointer">
+<div class="h-[600px] overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" data-alt="Macro close-up of embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD39l66LWlopYu-MwfRXKBt03DYuFwJWjtI-YfkCkVJR-dfPBY0lvCqLzFe5spClH2vy0msp7hh6x0x-9RQVhm9oLKyjzQa7c9oGVqQlXYUAGVWZY5Qmsn6rq41kgdOhbT5Y3vpoyKgIaz9sUjAny0GQ7OE3ehQZSaY2L4RuBQfqWkysK7OgC-kRMar7yP-vP9iLW5ZMp8hM4LwdzCT0SQJO3WlMzs68uHyasc_zvD4pkMCgYsIvE2aIPLbvCwwVJRBjDSr_cBx2vk"/>
+</div>
+<div class="absolute bottom-12 left-12">
+<h3 class="font-headline text-white tracking-tighter text-3xl">EMBROIDERED</h3>
+</div>
+</div>
+<!-- Right Column Categories -->
+<div class="md:col-span-5 flex flex-col gap-8">
+<!-- Category 2: Solids -->
+<div class="relative group cursor-pointer flex-1 min-h-[350px]">
+<div class="absolute inset-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" data-alt="Solids collection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRAv8j_jA8v1NTepsGosqzwyo7SrNdvwkKrdAKsfmncFbJikv9S6X4xyNb67rlPlUGnrKHXnprPz82OvBlICWsDVuBdFsYVDHAB7XWtIt_LSVWapCJeOoxsM60McW65WZSlvlNvb4c5zJG2vCxw8DIM_Yf3Rid7-keo_b0-3DbV73J41ZNKwgYuRjCPB5SSzrttOLONiAnIDybAZqche-tz9FAkBJdrbfdy9hlTyy0XJE_4bIbrLRPiHhdDqLGdYtptbIlW7spPI0"/>
+</div>
+<div class="absolute bottom-8 left-8">
+<h4 class="font-headline text-white tracking-tighter text-2xl">SOLIDS</h4>
+</div>
+</div>
+<!-- Category 3: Festive -->
+<div class="relative group cursor-pointer flex-1 min-h-[350px]">
+<div class="absolute inset-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" data-alt="Festive collection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGV3Nx7q6n62SSS4E0vzip6ImLLnnp8-49wCI8vY_P8Z_TI01c4lIxI33w_xoekQyEt2LAdch4nrbHh13cFjT6dqZkJf6HBtHd393gs_w3DNb4YTaVegd-nO81lgxFxL9bL3IPll0AGQ6A1hC2WbhwHGDPRCPRCtfEDeCSI7WpfX6SVOveDqm1XgUjqK0wvwEld4Z-5ONY19Y_eSe9hQVxnb0QN6xnggk18N6bNPX2ftk5VMHoA5U6rafLGT5Jnj3wUDJ48Iuxs10"/>
+</div>
+<div class="absolute bottom-8 left-8">
+<h4 class="font-headline text-white tracking-tighter text-2xl">FESTIVE</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Founder's Note -->
+<section class="bg-surface-container py-40 px-8">
+<div class="max-w-4xl mx-auto text-center">
+<span class="material-symbols-outlined text-4xl mb-12 text-[#FFD700]">history_edu</span>
+<blockquote class="font-headline text-[clamp(1.5rem,4vw,2.5rem)] leading-snug text-on-surface mb-12 italic">
+                    "Archivist is a study in subtraction. By removing color, we reveal the soul of the stitch. Our mission is to archive India’s rich textile heritage within the rigid, beautiful frames of modern architectural precision."
+                </blockquote>
+<div class="space-y-2">
+<p class="font-label text-[12px] tracking-[0.4em] uppercase font-bold text-[#FFD700]">The Archivist</p>
+<p class="font-body text-sm text-[#E5E2E1]/60">FOUNDER'S NOTE</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-16 px-8 bg-[#1C1B1B] flex flex-col items-center gap-8">
+<div class="font-headline text-lg text-[#FFD700] tracking-widest font-bold">ARCHIVIST</div>
+<div class="flex flex-wrap justify-center gap-10">
+<a class="font-label text-xs uppercase tracking-widest text-[#E5E2E1]/50 hover:text-[#FFD700] transition-all duration-500" href="#">PRIVACY</a>
+<a class="font-label text-xs uppercase tracking-widest text-[#E5E2E1]/50 hover:text-[#FFD700] transition-all duration-500" href="#">TERMS</a>
+<a class="font-label text-xs uppercase tracking-widest text-[#E5E2E1]/50 hover:text-[#FFD700] transition-all duration-500" href="#">CAREERS</a>
+<a class="font-label text-xs uppercase tracking-widest text-[#E5E2E1]/50 hover:text-[#FFD700] transition-all duration-500" href="#">CONTACT</a>
+</div>
+<div class="pt-8 border-t border-outline/10 w-full max-w-sm text-center">
+<p class="font-label text-xs uppercase tracking-widest text-[#E5E2E1]/30">© 2024 ARCHIVIST. PERMANENCE IN FORM.</p>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Visible on Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 bg-[#131313]/80 backdrop-blur-xl border-t border-outline/10">
+<div class="flex flex-col items-center justify-center text-[#FFD700] space-y-1 active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="collections">grid_view</span>
+<span class="font-label text-[10px] uppercase tracking-[0.1em] font-bold">COLLECTIONS</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#E5E2E1]/60 space-y-1 hover:text-[#FFD700] transition-opacity active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label text-[10px] uppercase tracking-[0.1em] font-bold">SEARCH</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#E5E2E1]/60 space-y-1 hover:text-[#FFD700] transition-opacity active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="inventory_2">auto_stories</span>
+<span class="font-label text-[10px] uppercase tracking-[0.1em] font-bold">ARCHIVE</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#E5E2E1]/60 space-y-1 hover:text-[#FFD700] transition-opacity active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label text-[10px] uppercase tracking-[0.1em] font-bold">PROFILE</span>
+</div>
+</nav>
+</body></html>

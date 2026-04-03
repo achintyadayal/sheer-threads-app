@@ -19,22 +19,21 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage });
 // GET all products
-router.get("/", protect,  async (req, res) => {
+router.get("/", async (req, res) => {
   const products = await Product.find();
   res.json(products);
 });
 
 // GET single product
-router.get("/:id", protect, async (req, res) => {
+router.get("/:id", async (req, res) => {
   const product = await Product.findById(req.params.id);
   res.json(product);
 });
 
-// CREATE product
-router.post("/", protect, upload.single("image"), async (req, res) => {
+// CREATE product (up to 5 images)
+router.post("/", protect, upload.array("images", 5), async (req, res) => {
   try {
-    console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
+    const imageUrls = req.files ? req.files.map((f) => f.path) : [];
 
     const newProduct = new Product({
       name: req.body.name,
@@ -44,7 +43,10 @@ router.post("/", protect, upload.single("image"), async (req, res) => {
       fabric: req.body.fabric,
       care: req.body.care,
       founderNote: req.body.founderNote,
-      image: req.file ? req.file.path : "",
+      category: req.body.category,
+      sizes: req.body.sizes ? JSON.parse(req.body.sizes) : [],
+      image: imageUrls[0] || "",
+      images: imageUrls,
     });
 
     const saved = await newProduct.save();
@@ -59,8 +61,8 @@ router.post("/", protect, upload.single("image"), async (req, res) => {
   }
 });
 
-// UPDATE product
-router.put("/:id", protect, upload.single("image"), async (req, res) => {
+// UPDATE product (up to 5 images)
+router.put("/:id", protect, upload.array("images", 5), async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -76,21 +78,32 @@ router.put("/:id", protect, upload.single("image"), async (req, res) => {
       fabric: req.body.fabric,
       care: req.body.care,
       founderNote: req.body.founderNote,
+      category: req.body.category,
     };
 
-    // If new image uploaded
-    if (req.file) {
-      // Delete old image from Cloudinary
-      if (product.image) {
-        const parts = product.image.split("/");
-        const fileName = parts[parts.length - 1];
-        const folder = parts[parts.length - 2];
-        const publicId = `${folder}/${fileName.split(".")[0]}`;
+    if (req.body.sizes) {
+      updateData.sizes = JSON.parse(req.body.sizes);
+    }
 
-        await cloudinary.uploader.destroy(publicId);
+    // If new images uploaded, replace old ones
+    if (req.files && req.files.length > 0) {
+      // Delete old images from Cloudinary
+      const oldImages = product.images || (product.image ? [product.image] : []);
+      for (const imgUrl of oldImages) {
+        try {
+          const parts = imgUrl.split("/");
+          const fileName = parts[parts.length - 1];
+          const folder = parts[parts.length - 2];
+          const publicId = `${folder}/${fileName.split(".")[0]}`;
+          await cloudinary.uploader.destroy(publicId);
+        } catch (e) {
+          console.error("Error deleting old image:", e.message);
+        }
       }
 
-      updateData.image = req.file.path;
+      const newImageUrls = req.files.map((f) => f.path);
+      updateData.image = newImageUrls[0];
+      updateData.images = newImageUrls;
     }
 
     const updated = await Product.findByIdAndUpdate(
@@ -108,7 +121,7 @@ router.put("/:id", protect, upload.single("image"), async (req, res) => {
 });
 
 // DELETE product
-router.delete("/:id", protect, authorize("superadmin"), async (req, res) => {
+router.delete("/:id", protect, authorize("admin"), async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -116,14 +129,18 @@ router.delete("/:id", protect, authorize("superadmin"), async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Extract public_id from Cloudinary URL
-    if (product.image) {
-      const parts = product.image.split("/");
-      const fileName = parts[parts.length - 1];
-      const folder = parts[parts.length - 2];
-      const publicId = `${folder}/${fileName.split(".")[0]}`;
-
-      await cloudinary.uploader.destroy(publicId);
+    // Delete all images from Cloudinary
+    const allImages = product.images || (product.image ? [product.image] : []);
+    for (const imgUrl of allImages) {
+      try {
+        const parts = imgUrl.split("/");
+        const fileName = parts[parts.length - 1];
+        const folder = parts[parts.length - 2];
+        const publicId = `${folder}/${fileName.split(".")[0]}`;
+        await cloudinary.uploader.destroy(publicId);
+      } catch (e) {
+        console.error("Error deleting image:", e.message);
+      }
     }
 
     await Product.findByIdAndDelete(req.params.id);

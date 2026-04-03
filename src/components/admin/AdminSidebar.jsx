@@ -7,13 +7,15 @@ import {
   Settings,
   LogOut
 } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 function AdminSidebar() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    navigate("/admin/login");
+    logout();
+    navigate("/login");
   };
 
   const menuItems = [
@@ -64,10 +66,9 @@ function AdminSidebar() {
             key={item.name}
             to={item.path}
             className={({ isActive }) =>
-              `flex items-center space-x-3 px-6 py-3 transition-all ${
-                isActive
-                  ? "bg-amber-600 text-white"
-                  : "hover:bg-neutral-800 text-neutral-300"
+              `flex items-center space-x-3 px-6 py-3 transition-all ${isActive
+                ? "bg-amber-600 text-white"
+                : "hover:bg-neutral-800 text-neutral-300"
               }`
             }
           >

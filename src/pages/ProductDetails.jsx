@@ -6,7 +6,7 @@ import { getProductById, getProducts } from "../api/productService";
 
 function ProductDetails() {
   const { id } = useParams();
-  const { addToCart } = useContext(AppContext);
+  const { cart, addToCart, updateCartQuantity, removeFromCart } = useContext(AppContext);
 
   const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
@@ -44,6 +44,9 @@ function ProductDetails() {
   if (!product) {
     return <div className="pt-24 text-center">Product not found</div>;
   }
+
+  const productId = product._id || product.id;
+  const cartItem = cart.find((item) => (item._id || item.id) === productId);
 
   return (
     <div className="pt-24 px-6">
@@ -103,19 +106,21 @@ function ProductDetails() {
           <div className="mb-8">
             <h3 className="font-semibold mb-4">Select Size</h3>
             <div className="flex gap-4">
-              {["XS", "S", "M", "L"].map((size) => (
+              {(product.sizes || []).map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`px-4 py-2 border rounded-full ${
-                    selectedSize === size
-                      ? "bg-yellow-500 text-black"
-                      : "border-neutral-400"
-                  }`}
+                  className={`px-4 py-2 border rounded-full transition-colors ${selectedSize === size
+                    ? "bg-yellow-500 text-black border-yellow-500"
+                    : "border-neutral-400 hover:border-black"
+                    }`}
                 >
                   {size}
                 </button>
               ))}
+              {(!product.sizes || product.sizes.length === 0) && (
+                <span className="text-gray-500 italic">One size fits all</span>
+              )}
             </div>
           </div>
 
@@ -125,13 +130,39 @@ function ProductDetails() {
             <p><span className="font-semibold">Care:</span> {product.care}</p>
           </div>
 
-          {/* ADD TO CART */}
-          <button
-            onClick={() => addToCart(product)}
-            className="bg-yellow-500 text-black px-10 py-4 rounded-full font-bold tracking-widest hover:scale-105 hover:bg-yellow-400 transition duration-300 shadow-lg uppercase"
-          >
-            Add to Cart
-          </button>
+          {/* ADD TO CART / QUANTITY CONTROLS */}
+          {cartItem ? (
+            <div className="flex items-center gap-6 mb-8 mt-4">
+              <div className="flex items-center border-2 border-neutral-800 rounded-full px-4 py-2 bg-neutral-100">
+                <button
+                  onClick={() => updateCartQuantity(cartItem._id || cartItem.id, cartItem.quantity - 1)}
+                  className="text-2xl px-3 hover:text-yellow-600 font-bold transition"
+                >
+                  -
+                </button>
+                <span className="mx-4 font-black text-xl">{cartItem.quantity}</span>
+                <button
+                  onClick={() => updateCartQuantity(cartItem._id || cartItem.id, cartItem.quantity + 1)}
+                  className="text-2xl px-3 hover:text-yellow-600 font-bold transition"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                onClick={() => removeFromCart(cartItem._id || cartItem.id)}
+                className="text-red-500 hover:text-red-700 font-semibold underline text-lg tracking-wide transition"
+              >
+                Remove
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => addToCart(product)}
+              className="bg-yellow-500 text-black px-10 py-4 mb-8 rounded-full font-bold tracking-widest hover:scale-105 hover:bg-yellow-400 transition duration-300 shadow-lg uppercase"
+            >
+              Add to Cart
+            </button>
+          )}
 
           {/* FOUNDER NOTE */}
           <div className="mt-16 p-6 bg-neutral-100 rounded-lg">

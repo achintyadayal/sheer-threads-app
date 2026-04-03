@@ -9,9 +9,9 @@ const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const adminRoutes = require("./routes/adminRoutes");
-app.use("/api/admin", adminRoutes);
-const app = express();
 
+const app = express();
+app.use("/api/admin", adminRoutes);
 app.use(cors());
 app.use(express.json());
 app.use("/api/orders", orderRoutes);
@@ -32,6 +32,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT,"0.0.0.0",() => {
   console.log(`Server running on port ${process.env.PORT}`);
 });

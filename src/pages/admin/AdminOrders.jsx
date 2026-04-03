@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
-import { getOrders, updateOrderStatus } from "../../api/orderService";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem("userToken");
+    return {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+  };
+
   const fetchOrders = async () => {
     try {
-      const data = await getOrders();
-      setOrders(data);
+      const res = await fetch(`${API_URL}/api/orders`, {
+        headers: getAuthHeaders(),
+      });
+      const data = await res.json();
+      setOrders(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error fetching orders:", error);
     } finally {
@@ -22,7 +34,11 @@ function AdminOrders() {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await updateOrderStatus(id, status);
+      await fetch(`${API_URL}/api/orders/${id}/status`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ status }),
+      });
       fetchOrders();
     } catch (error) {
       console.error("Status update error:", error);
@@ -80,7 +96,7 @@ function AdminOrders() {
                 </h3>
 
                 <div className="space-y-4">
-                  {order.items.map((item, index) => (
+                  {order.items && order.items.map((item, index) => (
                     <div
                       key={index}
                       className="flex items-center justify-between"

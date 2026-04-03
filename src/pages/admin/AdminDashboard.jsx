@@ -1,10 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BarChart3 } from "lucide-react";
 
-function AdminDashboard({ products, orders }) {
+const API_URL = import.meta.env.VITE_API_URL;
+
+function AdminDashboard() {
+  const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("userToken");
+        const headers = {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        };
+
+        const [productsRes, ordersRes] = await Promise.all([
+          fetch(`${API_URL}/api/products`, { headers }),
+          fetch(`${API_URL}/api/orders`, { headers }),
+        ]);
+
+        const productsData = await productsRes.json();
+        const ordersData = await ordersRes.json();
+
+        setProducts(Array.isArray(productsData) ? productsData : []);
+        setOrders(Array.isArray(ordersData) ? ordersData : []);
+      } catch (error) {
+        console.error("Failed to fetch dashboard data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-gray-500 text-lg">Loading dashboard...</p>
+      </div>
+    );
+  }
 
   const totalRevenue = orders.reduce(
-    (sum, order) => sum + order.total,
+    (sum, order) => sum + (order.totalAmount || order.total || 0),
     0
   );
 
@@ -12,7 +54,7 @@ function AdminDashboard({ products, orders }) {
   const totalProducts = products.length;
 
   const pendingOrders = orders.filter(
-    order => order.status === "pending"
+    order => order.status === "Pending" || order.status === "pending"
   ).length;
 
   const stats = [
@@ -39,7 +81,7 @@ function AdminDashboard({ products, orders }) {
   ];
 
   return (
-    <div>
+    <div className="ml-64 p-10 bg-neutral-50 min-h-screen">
 
       {/* Title */}
       <h2 className="text-2xl font-serif text-gray-800 mb-6">
@@ -92,11 +134,11 @@ function AdminDashboard({ products, orders }) {
             <tbody>
               {orders.slice(0, 5).map(order => (
                 <tr
-                  key={order.id}
+                  key={order._id || order.id}
                   className="border-b hover:bg-gray-50"
                 >
                   <td className="py-3 px-4">
-                    {order.id}
+                    {(order._id || order.id || "").slice(-6)}
                   </td>
 
                   <td className="py-3 px-4">
@@ -104,22 +146,23 @@ function AdminDashboard({ products, orders }) {
                   </td>
 
                   <td className="py-3 px-4">
-                    {order.date}
+                    {order.createdAt
+                      ? new Date(order.createdAt).toLocaleDateString()
+                      : order.date}
                   </td>
 
                   <td className="py-3 px-4">
-                    ₹{order.total.toLocaleString()}
+                    ₹{(order.totalAmount || order.total || 0).toLocaleString()}
                   </td>
 
                   <td className="py-3 px-4">
                     <span
-                      className={`px-2 py-1 rounded-full text-xs ${
-                        order.status === "delivered"
-                          ? "bg-green-100 text-green-800"
-                          : order.status === "shipped"
+                      className={`px-2 py-1 rounded-full text-xs ${order.status === "Delivered" || order.status === "delivered"
+                        ? "bg-green-100 text-green-800"
+                        : order.status === "Shipped" || order.status === "shipped"
                           ? "bg-blue-100 text-blue-800"
                           : "bg-yellow-100 text-yellow-800"
-                      }`}
+                        }`}
                     >
                       {order.status}
                     </span>

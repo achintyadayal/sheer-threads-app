@@ -8,6 +8,8 @@ const productSchema = new mongoose.Schema({
   fabric: String,
   care: String,
   founderNote: String,
+  category: String,
+  sizes: [String],
   image: String,
   images: [String],
 }, { timestamps: true });
