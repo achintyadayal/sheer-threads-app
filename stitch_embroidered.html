@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {},
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            fontFamily: {
+              "headline": ["Playfair Display", "serif"],
+              "body": ["Public Sans", "sans-serif"],
+              "label": ["Public Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0c0a09; /* stone-950 */
+            color: #f5f5f4; /* stone-100 */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-stone-950 dark:bg-black shadow-2xl border-b border-stone-800">
+<div class="flex items-center gap-4">
+<button class="text-stone-400 hover:text-amber-300 transition-colors scale-95 active:duration-150">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<div class="text-2xl font-light tracking-[0.3em] text-amber-500 font-serif tracking-widest uppercase">
+            ARCHIVIST
+        </div>
+<div class="flex items-center gap-4">
+<button class="text-stone-400 hover:text-amber-300 transition-colors scale-95 active:duration-150">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative h-[618px] w-full overflow-hidden mb-12">
+<img alt="Detailed Embroidery" class="w-full h-full object-cover opacity-60" data-alt="extreme close-up of intricate gold embroidery on deep black heavy silk fabric with dramatic side lighting highlighting textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCovJnFG4_kmLst0_LNdemNjPW7zwnDyVtLO6vSrq1D4nboI7UGv0DMkHqnJFl9fesrDGtzm4yeTSvr9yRcCw6qw1SqLLKaZ_wuh8rdNhC4zqfcjAyJzsUdjEvZZr62UpgGQRqlzE-Ll4eQcZR2SSIodMdlyXon_JYrOSjTTK0st4lZJCBTDawV9siiAsGiavnBF1IM5XGN58O-hN1AdajiQwL0CxJtZUu24O5hXH5GN-90md2nQn1gtPEiQfWaWK4PaE54cPl8H4s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-stone-950/40"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+<span class="text-amber-500 uppercase tracking-[0.4em] text-xs mb-4">The Curated Collection</span>
+<h1 class="font-headline text-5xl md:text-7xl lg:text-8xl text-stone-100 mb-6">Embroidered</h1>
+<div class="w-24 h-[1px] bg-amber-500 mb-6"></div>
+<p class="max-w-xl text-stone-400 font-light leading-relaxed text-sm md:text-base">
+                    An exploration of artisanal craftsmanship and modern silhouettes. Each piece is a testament to the archival techniques of gilded thread-work.
+                </p>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-12 border-b border-stone-800 pb-4">
+<div>
+<h2 class="text-stone-500 text-xs uppercase tracking-widest">AESTHETIC ARCHIVE / 001</h2>
+<p class="text-amber-500 font-headline text-2xl">Seasonal Catalog</p>
+</div>
+<div class="text-stone-500 text-xs tracking-tighter uppercase">
+                    8 Items Displayed
+                </div>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Gilded Thread Kurta" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="high fashion monochromatic portrait of a model in a black embroidered tunic against a dark studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQf5jkMfjgUaD6FFf4uBjlX7j1N7TEgv1G-1ZqDhhyKOz6Sbr7VkVBMuOZWeVVYXeZu-KBdHXaU0We44hJmc4PADOzbODkV0vIXsS7-B1E5FeFLyOc0MQ0CTnir1ifWHWhlGTgnv91xgzbekZxfIE4BCrBzZwvN7MI4M2izWHw2YVg0WNcLb0ej3UYl6dtPIO4CxA0SDhzW9VpGNsWs0CiwKeIGauIq8_HP3ijd4pw-y36cTQscasPG7slW_0o3hTzvF9VWARGO2o"/>
+<div class="absolute bottom-2 left-2 bg-amber-500 text-stone-950 px-2 py-0.5 text-[8px] md:text-[10px] font-bold uppercase tracking-widest">
+                            Limited
+                        </div>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Gilded Thread Kurta</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 442</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$840</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Onyx Floral Vest" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="monochromatic studio shot of a textured black vest with subtle floral embroidery details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1hjkAjz3PO0hskCVeiUUK0KTwOs40iJj21sdkBXiiqzS9sSNZ6vvKqEghJqp6UzsWMxEdkIa3_AFkKJ_aWWX6MLF6FWiACuwcwiZcFjQptLP327GGr8-SLEdxDlZtHkA-Wr0IMx2F9eOgSdQazw2Pup51g2eKQt6VEAutEXBxdE5JDZ3GWkTxAPiYnMFUdGa_BFBvchZngXIYAxFbyR5bHqTkbTR5ZF71q69O8hVKbdZ7olq0VsBxUGefvztapVb07tsu0ybipIE"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Onyx Floral Vest</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 109</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$560</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Midnight Tassel Tunic" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="artistic monochromatic fashion photo of a flowing black garment with intricate gold-toned embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn0b8MxprD6vsIyh-ADB5HWfKLcMppSD3kaevBRM_D9XU05B9o7axdeNRG7vRX9PZ0ac2H6K4-qW0dRa6WLsx_zZor_0Zq8xAZAjIYUFhYoTGGf24Kadu935oqs4kU2qGEfcXwouDpH7iq2xhD5umriNpZLXEChmovCiLKiKQwXCSq2xLrknnzgytNLl-I412Uxm78aSQdr4A4RypZ-7yKCgCYUyz-x2YLXpiVXQ-nSTqyB7-7NUdSDVlR7i8ltJN1Z4LQUcHFPLQ"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Midnight Tassel Tunic</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 882</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$1,200</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Gold Leaf Overcoat" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="fashion model wearing a long black coat with heavy gold leaf embroidery in a minimalist dark environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqAMGGqCtqOz_oiNFZi8AjHKW8HBilMDdrL6oYcY8BxzGYmFcdz0v1GkNtTunFTaDG_9nn_yHCwFyutr_95Q5o4tSp4G7ypmMwoxXSS1SniEWsqXgYsNnFDyUp7LJSHZkRGfcZP1v5xR8DUuLYlzw4Nm08DZznMcfiraBnLa6aMiXukuxvblUIVnfQ0QRWwrADCwLfOsauAPyFbuB1iWa2jJoZ-yuNEXbuYEB1FwSwbU_xnJL64nvPKQw139JMZpJejNr-2BDPU98"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Gold Leaf Overcoat</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 321</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$2,450</span>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Stitch Detail Blazer" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="close up of a sharp black blazer with meticulous yellow-gold stitching along the lapels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWAbHB_u4nlnOrfEWZMpgdnb-iWAAY4GWskcpO_KZYSdURuqk9HjCKjZrGErgY6bWZHeGvRqZIy6Fg1R5CK4vWnkXXN5KUK_Zrd6i1iZ_lAwm_Tideyv-h83GMcWhRH265uIUXsqyZQvTY5bT6I8iiEkKk-YGZxugwq4rxAd5RixovMr0EljJq2F2gvgbRs_8IzjSKVSfYSbxvLCneqgiP_ICJt_vaJ0QMe6j3-UygLNnIqZJpjFhVX4bLMxnZBmNq2TnuxrusvWw"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Stitch Detail Blazer</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 714</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$980</span>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Baroque Mesh Top" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="monochromatic photo of a sheer black top with intricate baroque style embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOUo_-R3d5ndrKz-XtiMmvXUirvxTpvs099RhKAnGISFQ6JnGwKjb9Buug5ATEHHy2W-O0awzBSm0Q2Q6Fp-y7V4_dtqqRxKLJUMbZ_F1AV3dNXcIHx31lX7Dr8jfGrZsxF-Dmagdfem47VFtkWB6v5WBeEORnXdrXRR-YM6-zQA22a_U9L_UfJUxsKRXKRFZVSGbv7d4tEM8RpGL76bkT6yj0H553zpZX_RS5zzDNvzGL31bfQg8klxJVUH2wlUIDx20xths4oLE"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Baroque Mesh Top</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 052</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$420</span>
+</div>
+</div>
+<!-- Product Card 7 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Embossed Silk Scarf" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="monochrome flat lay of a silk scarf with embossed embroidery patterns and fringe details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv_78vZVRx5n2UJCDXOSUGAuDQ7vtYkKgTLZgd2AUiUhj34EHaECbTsRfx84ALKiU-E5cCp-fkdb7UrqOWA4iLszwNIqfBiVTM_l4tPjo_QjAbTdUXcj4Gbh68AMp_vG-7iogToD3aPNfbD31tS77rdGQ0ha3DBdcxWlJ1qYruhX_UEovSxxAnQRvXYXqyia3t3syR1_f65YRee6HCNG-XJnp-hbzZGjXQYTBxfeJ99WlV3uBjWV7p9NP6DPw-hltuucRV6rSROaQ"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Embossed Silk Scarf</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 115</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$290</span>
+</div>
+</div>
+<!-- Product Card 8 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img alt="Heritage Embroidered Pant" class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700" data-alt="monochromatic fashion image of black trousers with vertical gold embroidery along the side seams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsN7zGOmxrmxKd8vQt7q4XqgsgTlr_RciixpirUK5fA9W72jyXO7adWN0Ru5BN_ati2jUcfpd2d24k-Sy4DaX20xf9iCkLDcE41y2Q8F9g6aGvkaVY6i-2_wuH_Uq3CIYhciqQCvsKVjdtUlurP7YBfqhso5NYge2afv1-LlMWudBpdbBMLOZiFWfh4rkgF1OMtXNKs6qa_9xKnt4lAsCRYoGeaRVQqdEwRf4r67-sqdSf1Jw4WH14_cJnIQJaUSQ37kVZzXTFCcM"/>
+</div>
+<h3 class="font-headline text-lg md:text-xl text-stone-100 group-hover:text-amber-400 transition-colors truncate">Heritage Embroidered Pant</h3>
+<div class="flex flex-col md:flex-row md:justify-between md:items-center mt-1">
+<span class="text-stone-500 text-[10px] md:text-xs uppercase tracking-wider">Archive No. 603</span>
+<span class="text-amber-500 font-medium text-sm md:text-base">$750</span>
+</div>
+</div>
+</div>
+<!-- More Call to Action -->
+<div class="mt-20 text-center py-12 border-t border-stone-800">
+<p class="text-stone-500 uppercase tracking-[0.2em] text-xs mb-6">Discover more from the studio</p>
+<button class="bg-amber-500 text-stone-950 px-10 py-4 font-bold uppercase tracking-widest text-xs hover:bg-amber-400 transition-all scale-100 active:scale-95">
+                    View Full Archive
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-stone-950/95 dark:bg-black/95 backdrop-blur-md border-t border-stone-800">
+<a class="flex flex-col items-center justify-center text-stone-500 hover:text-amber-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-amber-500 bg-amber-500/10 rounded-full px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Collections</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 hover:text-amber-200" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Archive</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 hover:text-amber-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Account</span>
+</a>
+</nav>
+</body></html>

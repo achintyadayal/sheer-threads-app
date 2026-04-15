@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            950: '#0c0a09'
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b'
+                        }
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Public Sans", "sans-serif"],
+                        body: ["Public Sans", "sans-serif"],
+                        label: ["Public Sans", "sans-serif"],
+                        serif: ["Playfair Display", "serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-dark {
+            background: rgba(12, 10, 9, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-stone-950 text-stone-200 font-body selection:bg-amber-500/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-stone-950 dark:bg-black border-b border-stone-800 shadow-2xl">
+<div class="flex items-center gap-4">
+<button class="text-amber-400 dark:text-amber-500 hover:text-amber-300 transition-colors scale-95 active:duration-150">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<div class="text-2xl font-light tracking-[0.3em] text-amber-500 font-serif uppercase">
+        ARCHIVIST
+    </div>
+<div class="flex items-center gap-4">
+<button class="text-amber-400 dark:text-amber-500 hover:text-amber-300 transition-colors scale-95 active:duration-150">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative h-[618px] w-full overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="dramatic fashion portrait of a couple in opulent black and gold traditional attire against a dark moody background with warm spotlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDutK9AC7aIdsAuR_dp70ZIqA1hhsgLsXfCAj5uG9sAU0ivTTOf0qmA7p31ibKDVEXRPniIr8eneJNk0mC3PMygGKiEwXV7tf4xSv4QjXn6EicHEW_xJ8SQB_xvn9lOG1FBxMZAhx8WBkcz9gJ6VHeFOZM2zhNVebBkiKPgPH7rA7XTrMfDzeGBmxpS9kjCXo76fMn_OakQ50slvPTp0X0Yim1A_6YR6kpCdm9b287SDOnBajxuYl_RhiG5K9dHln5yjWtxdtNinD4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent"></div>
+<div class="absolute inset-0 flex flex-col justify-end p-8 md:p-16 lg:p-24">
+<div class="max-w-4xl">
+<span class="text-amber-500 font-headline tracking-[0.4em] text-sm uppercase mb-4 block">Festive Collection 2024</span>
+<h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-tight mb-6">Luminous <br/><span class="text-amber-400 italic">Shadows</span></h1>
+<p class="text-stone-400 text-lg md:text-xl max-w-xl font-light leading-relaxed">
+                    A celebration of midnight craftsmanship and solar brilliance. Explore our curated selection of Golden Hour Lehengas and Obsidian Sherwanis.
+                </p>
+</div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="px-6 py-12 border-b border-stone-900 sticky top-16 bg-stone-950/80 backdrop-blur-md z-40">
+<div class="flex flex-wrap items-center justify-between gap-6 max-w-7xl mx-auto">
+<div class="flex gap-8 overflow-x-auto pb-2 scrollbar-hide">
+<button class="text-amber-500 border-b-2 border-amber-500 pb-1 text-sm tracking-widest font-bold uppercase shrink-0">All Pieces</button>
+<button class="text-stone-500 hover:text-amber-400 transition-colors pb-1 text-sm tracking-widest uppercase shrink-0">Golden Hour</button>
+<button class="text-stone-500 hover:text-amber-400 transition-colors pb-1 text-sm tracking-widest uppercase shrink-0">Obsidian</button>
+<button class="text-stone-500 hover:text-amber-400 transition-colors pb-1 text-sm tracking-widest uppercase shrink-0">Accessories</button>
+</div>
+<div class="flex items-center gap-4 ml-auto">
+<button class="flex items-center gap-2 text-stone-300 text-xs tracking-widest uppercase border border-stone-800 px-4 py-2 hover:bg-stone-900 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span> Filter
+                </button>
+<button class="flex items-center gap-2 text-stone-300 text-xs tracking-widest uppercase border border-stone-800 px-4 py-2 hover:bg-stone-900 transition-colors">
+                    Sort By <span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-4 py-16 max-w-7xl mx-auto">
+<div class="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-12 md:gap-x-8 md:gap-y-16">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="golden yellow silk lehenga with intricate gold embroidery displayed in a grand marble hallway with architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Mbbbkisx87-ebgEJpnJQrPaxp5aJufBC2J5uLeiJFP25j7GQErtamTKVKbixYarsvUzv7lQ_x8hs_GZsSDScbRiywR9Fm9ktB2w7iJHCaPaSQIRmy9tlDHm5nngnkevZLa8EbzPXF-Ks5je4063jX5yDdyvCGtrVblRO5qIzceUunQqGMU1HUkkL75cKQncDC-FY-v_hV9sL25XmwD8--to_u5fV4MXxo0Lj69V2GuGNnAyUszTU0yIwVA34GD7baWuI9iIRtw8"/>
+<div class="absolute top-2 left-2 bg-amber-500 text-stone-950 text-[8px] md:text-[10px] font-bold px-2 py-0.5 md:px-3 md:py-1 uppercase tracking-widest">Limited</div>
+<button class="absolute bottom-3 right-3 w-8 h-8 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+<span class="material-symbols-outlined text-sm md:text-base" data-icon="favorite">favorite</span>
+</button>
+</div>
+<h3 class="font-serif text-lg md:text-2xl text-amber-500 mb-0.5 md:mb-1 truncate">Auric Bloom Lehenga</h3>
+<p class="text-stone-500 text-[9px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] mb-2 md:mb-3 truncate">Golden Hour Collection</p>
+<div class="flex items-center justify-between">
+<span class="text-white text-sm md:text-lg font-light tracking-tighter">$3,450</span>
+<button class="text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest border-b border-amber-500/0 hover:border-amber-500 transition-all pb-0.5 md:pb-1">Details</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="obsidian black sherwani with jet black beadwork and velvet details styled with a classic wristwatch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm634C2U9VNW1rmRCqcvMTIUbbCcBj8MElLcGoRv0SCgiZ9yJhVzwNZBmrOoIVBs9YvmwXGRPV3YLJeENyIW6WVPuy4dHgTCCm2DwcpjPEsjfQUpBwCVEvpfN8rhITzIT0GsVfchqCB27FXqBH3_sqNLbGkcfHnrsP2nhcaNCaKJm2SAtfxgI8VnTOAfNhr61CqFdMscmW2lKrQ2FdXvm0GJ0M4XOL2-YAz7Khpn-3VKduUr8M4hRqnHDN8_ALPQwMz6aFBq3xTk4"/>
+<button class="absolute bottom-3 right-3 w-8 h-8 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+<span class="material-symbols-outlined text-sm md:text-base" data-icon="favorite">favorite</span>
+</button>
+</div>
+<h3 class="font-serif text-lg md:text-2xl text-amber-500 mb-0.5 md:mb-1 truncate">Nocturnal Sherwani</h3>
+<p class="text-stone-500 text-[9px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] mb-2 md:mb-3 truncate">Obsidian Series</p>
+<div class="flex items-center justify-between">
+<span class="text-white text-sm md:text-lg font-light tracking-tighter">$2,800</span>
+<button class="text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest border-b border-amber-500/0 hover:border-amber-500 transition-all pb-0.5 md:pb-1">Details</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="luxury bright yellow designer saree with heavy metallic borders draped on a minimalist mannequin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8SEy5qCRTFzU-pQ0nILGhwueaPeqdXYMzo2nh3ZgRzft-4Rl6Qn_qOYgb9_Rb3LyYpzdo4thDWVODnkCLJflgEzLpbBdp0bJcY8oORXwFvRNxu3UcnZUXpqTPqQ2sak-WaBjzmETeY0QrRUxCzaSrFczD8aMrNdpJ0yP0PXhr1VFQu_l8MS2S77vTqFnRf9d6HGGt6X1TNF9jm5Hc_HZFcHwBodSK_iscFOE7PdHoKONv7Pfzi2ClBpn_QtseZqaE-YGjxr--AgY"/>
+<div class="absolute bottom-0 left-0 right-0 p-3 md:p-6 bg-gradient-to-t from-stone-950 to-transparent">
+<div class="text-amber-400 text-[8px] md:text-xs font-bold uppercase tracking-[0.2em] md:tracking-[0.3em]">New Arrival</div>
+</div>
+<button class="absolute bottom-3 right-3 w-8 h-8 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+<span class="material-symbols-outlined text-sm md:text-base" data-icon="favorite">favorite</span>
+</button>
+</div>
+<h3 class="font-serif text-lg md:text-2xl text-amber-500 mb-0.5 md:mb-1 truncate">Solaris Drape</h3>
+<p class="text-stone-500 text-[9px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] mb-2 md:mb-3 truncate">Golden Hour Collection</p>
+<div class="flex items-center justify-between">
+<span class="text-white text-sm md:text-lg font-light tracking-tighter">$1,950</span>
+<button class="text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest border-b border-amber-500/0 hover:border-amber-500 transition-all pb-0.5 md:pb-1">Details</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="close up of intricate black lace and embroidery on a heavy sherwani fabric with subtle gold thread highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0ZaxB1htaXfcVPMRDV82GdvQn-13mZeIsUqoHJB4AQUS4e5OJa2r7XWdIQ493PgsKy2-CMxXVZbh9vv0znqs6DJhPaATF12lITgbESyZkuMXFKHyAI18rvtCUWFUclSWXbrWszf0WIgCOinqQ5J6-ji2VFSalwCNMBK4kPb8572MH4Z5YVTRO_-YKawf6ReidENBaPSFi0WxvzpkQOu9Aoyr9iFlU-kPdWsSc4BdmRtyha8_bCPw8-78E69MptcnsJbxW-umFNto"/>
+<button class="absolute bottom-3 right-3 w-8 h-8 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+<span class="material-symbols-outlined text-sm md:text-base" data-icon="favorite">favorite</span>
+</button>
+</div>
+<h3 class="font-serif text-lg md:text-2xl text-amber-500 mb-0.5 md:mb-1 truncate">Onyx Emperor Set</h3>
+<p class="text-stone-500 text-[9px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] mb-2 md:mb-3 truncate">Obsidian Series</p>
+<div class="flex items-center justify-between">
+<span class="text-white text-sm md:text-lg font-light tracking-tighter">$4,200</span>
+<button class="text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest border-b border-amber-500/0 hover:border-amber-500 transition-all pb-0.5 md:pb-1">Details</button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="vibrant yellow ochre fabric with hand-painted floral motifs and delicate zari work" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeZomMyLyVwUiXtsgLDPdI9IMXdzoM4Btb3Hc4UTCZ7Mw85AeaWdFJr0PO_4mbxphhoTz_iAVBPIP6Yf-RYAddgEMReAQInVD9qaZ8M48s-vMFG7AyoD05ljEyGUbP_LFCEi2ju-x7_qt34tUGCFRSbrbcXhQ_fi_MKTngoID1xOBWsOLCVBF1p4Fac9eTAwG1uk_9nGLtV8TzHnQwUSvxxrwLCRM336-nfxdaVCOXFy1JaxaAX9bVN29rWC2USvjIQkqC_o69H50"/>
+<button class="absolute bottom-3 right-3 w-8 h-8 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+<span class="material-symbols-outlined text-sm md:text-base" data-icon="favorite">favorite</span>
+</button>
+</div>
+<h3 class="font-serif text-lg md:text-2xl text-amber-500 mb-0.5 md:mb-1 truncate">Gilded Petal Lehenga</h3>
+<p class="text-stone-500 text-[9px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] mb-2 md:mb-3 truncate">Golden Hour Collection</p>
+<div class="flex items-center justify-between">
+<span class="text-white text-sm md:text-lg font-light tracking-tighter">$3,100</span>
+<button class="text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest border-b border-amber-500/0 hover:border-amber-500 transition-all pb-0.5 md:pb-1">Details</button>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] overflow-hidden bg-stone-900 mb-4">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="minimalist modern black sherwani with asymmetric collar and matte finish fabric" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFlfovlfldFKaGdfTgUFv0Mykfhq5c5s5fQNtHVSIhiLKRc9sDO_Oufi1hyoof00OJiCu0i0WO3zuBXuCsaTPcHaifwuWhZ91wAkFlPmmxt2F-g3qvY-T7-x1dhH9gUKxomYgLO0cUbZUpp6n4BEsIChrHquubh760m-hx4CnnqJZ1ZYbPRby4wMD-Wp6SOXybfHCi10XUd0c0eYDlU8nwXBmBlbg23DfHY9Kdb-kcqir9_xEkoUufTL4INBxhInDLckRuEeIt41s"/>
+<button class="absolute bottom-3 right-3 w-8 h-8 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
+<span class="material-symbols-outlined text-sm md:text-base" data-icon="favorite">favorite</span>
+</button>
+</div>
+<h3 class="font-serif text-lg md:text-2xl text-amber-500 mb-0.5 md:mb-1 truncate">Eclipse Achkan</h3>
+<p class="text-stone-500 text-[9px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] mb-2 md:mb-3 truncate">Obsidian Series</p>
+<div class="flex items-center justify-between">
+<span class="text-white text-sm md:text-lg font-light tracking-tighter">$2,400</span>
+<button class="text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest border-b border-amber-500/0 hover:border-amber-500 transition-all pb-0.5 md:pb-1">Details</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Footnote Section -->
+<section class="py-24 px-6 border-t border-stone-900">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="font-serif text-4xl text-white mb-6">Join the Inner Circle</h2>
+<p class="text-stone-400 mb-10 font-light">Be the first to witness our private seasonal showcases and bespoke festive launches.</p>
+<div class="flex flex-col md:flex-row gap-4">
+<input class="flex-1 bg-transparent border-b border-stone-700 text-white p-4 focus:border-amber-500 outline-none transition-colors tracking-widest text-sm" placeholder="YOUR EMAIL ADDRESS" type="email"/>
+<button class="bg-amber-500 text-stone-950 px-10 py-4 font-bold uppercase tracking-widest hover:bg-amber-400 transition-colors">Subscribe</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-4 bg-stone-950/95 dark:bg-black/95 backdrop-blur-md border-t border-stone-800">
+<div class="flex flex-col items-center justify-center text-stone-500 hover:text-amber-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-amber-500 bg-amber-500/10 rounded-full px-4 py-1 scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Collections</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 hover:text-amber-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Archive</span>
+</div>
+<div class="flex flex-col items-center justify-center text-stone-500 hover:text-amber-200 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] uppercase tracking-tighter font-medium mt-1">Account</span>
+</div>
+</nav>
+</body></html>

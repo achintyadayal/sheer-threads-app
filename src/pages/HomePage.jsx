@@ -27,7 +27,7 @@ function HomePage() {
         {/* Background Video */}
         <div className="absolute inset-0 opacity-60">
           <video
-            src="/Sheer_Threads_products.mp4"
+            src={`${import.meta.env.BASE_URL}Sheer_Threads_products.mp4`}
             autoPlay
             loop
             muted
