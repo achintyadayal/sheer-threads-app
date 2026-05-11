@@ -17,7 +17,7 @@ function UserHeader() {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl flex justify-between items-center px-6 md:px-8 h-20 border-b border-[#474747]/10">
+    <header className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-8 h-20 border-b border-[#474747]/10 transition-colors duration-300 ${isMobileMenuOpen ? "bg-[#131313]" : "bg-[#131313]/80 backdrop-blur-xl"}`}>
 
       {/* Mobile Menu Button (Left) */}
       <div className="flex items-center gap-4">
