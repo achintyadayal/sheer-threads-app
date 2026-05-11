@@ -109,7 +109,7 @@ function UserHeader() {
 
       {/* Mobile Navigation Overlay */}
       <div
-        className={`fixed inset-0 bg-[#131313]/95 backdrop-blur-xl text-white flex flex-col justify-center items-center space-y-8 text-xl font-semibold transition-all duration-300 md:hidden z-[55] ${isMobileMenuOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
+        className={`fixed inset-0 bg-[#131313] text-white flex flex-col justify-center items-center space-y-8 text-xl font-semibold transition-all duration-300 md:hidden z-[55] ${isMobileMenuOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
           }`}
       >
         <Link
