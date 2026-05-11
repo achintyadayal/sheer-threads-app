@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState, useEffect, useCallback } from "react";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -16,6 +16,73 @@ function HomePage() {
 
   // Take first 8 products for carousel
   const carouselProducts = filteredProducts.slice(0, 8);
+
+  // ── Swipeable Carousel Logic ──
+  const carouselRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const autoScrollRef = useRef(null);
+  const scrollSpeed = 1; // px per frame
+
+  // Auto-scroll
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+
+    const autoScroll = () => {
+      if (!isDragging && el) {
+        el.scrollLeft += scrollSpeed;
+        // Loop: when we reach halfway (the duplicate set), reset
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      autoScrollRef.current = requestAnimationFrame(autoScroll);
+    };
+
+    autoScrollRef.current = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(autoScrollRef.current);
+  }, [isDragging]);
+
+  // Touch handlers
+  const handleTouchStart = useCallback((e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // swipe sensitivity
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  }, [isDragging, startX, scrollLeft]);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // Mouse drag handlers (for desktop drag too)
+  const handleMouseDown = useCallback((e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+    carouselRef.current.style.cursor = "grabbing";
+  }, []);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  }, [isDragging, startX, scrollLeft]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+    if (carouselRef.current) carouselRef.current.style.cursor = "grab";
+  }, []);
 
   return (
     <div className="bg-[#1A1A1A] text-[#E5E2E1] min-h-screen pt-20">
@@ -109,121 +176,133 @@ function HomePage() {
           </Link>
         </motion.div>
 
-        {/* Carousel */}
-        <div className="relative overflow-hidden">
-          <div className="animate-carousel">
+        {/* Carousel - Swipeable */}
+        <div
+          ref={carouselRef}
+          className="overflow-x-scroll no-scrollbar cursor-grab select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+        >
+          <div className="flex gap-4 px-2 w-max">
             {/* Set 1 */}
-            <div className="flex gap-4 px-2">
-              {carouselProducts.map((product) => (
-                <Link
-                  to={`/product/${product._id}`}
-                  key={`set1-${product._id}`}
-                  className="w-[260px] md:w-[300px] bg-[#131313] flex-shrink-0 group cursor-pointer border border-[#474747]/10 transition-all duration-300"
-                >
-                  {/* Product Image */}
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      style={{ filter: "grayscale(70%)" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.filter = "grayscale(0%)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.filter = "grayscale(70%)")
-                      }
-                    />
-                    {/* Gold Hover Overlay */}
-                    <div className="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+            {carouselProducts.map((product) => (
+              <Link
+                to={`/product/${product._id}`}
+                key={`set1-${product._id}`}
+                className="w-[260px] md:w-[300px] bg-[#131313] flex-shrink-0 group cursor-pointer border border-[#474747]/10 transition-all duration-300"
+                onClick={(e) => isDragging && e.preventDefault()}
+                draggable={false}
+              >
+                {/* Product Image */}
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    style={{ filter: "grayscale(70%)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.filter = "grayscale(0%)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.filter = "grayscale(70%)")
+                    }
+                    draggable={false}
+                  />
+                  {/* Gold Hover Overlay */}
+                  <div className="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
 
-                    {/* Low Stock Badge */}
-                    {product.stock < 10 && (
-                      <div className="absolute top-3 left-3 bg-[#FFD700] text-[#1A1A1A] px-3 py-1 text-[10px] font-bold tracking-wider uppercase">
-                        Only {product.stock} left
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Product Info */}
-                  <div className="p-5 md:p-6">
-                    <p
-                      className="text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase"
-                      style={{ fontFamily: "'Manrope', sans-serif" }}
-                    >
-                      {product.category || "Exclusive Piece"}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <h3
-                        className="text-base md:text-lg text-[#FFD700] truncate mr-2"
-                        style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
-                      >
-                        {product.name}
-                      </h3>
-                      <span
-                        className="text-sm text-[#E5E2E1] whitespace-nowrap"
-                        style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
-                      >
-                        ₹ {product.price?.toLocaleString()}
-                      </span>
+                  {/* Low Stock Badge */}
+                  {product.stock < 10 && (
+                    <div className="absolute top-3 left-3 bg-[#FFD700] text-[#1A1A1A] px-3 py-1 text-[10px] font-bold tracking-wider uppercase">
+                      Only {product.stock} left
                     </div>
+                  )}
+                </div>
+
+                {/* Product Info */}
+                <div className="p-5 md:p-6">
+                  <p
+                    className="text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase"
+                    style={{ fontFamily: "'Manrope', sans-serif" }}
+                  >
+                    {product.category || "Exclusive Piece"}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <h3
+                      className="text-base md:text-lg text-[#FFD700] truncate mr-2"
+                      style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
+                    >
+                      {product.name}
+                    </h3>
+                    <span
+                      className="text-sm text-[#E5E2E1] whitespace-nowrap"
+                      style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
+                    >
+                      ₹ {product.price?.toLocaleString()}
+                    </span>
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </Link>
+            ))}
             {/* Set 2 - Duplicate for seamless loop */}
-            <div className="flex gap-4 px-2">
-              {carouselProducts.map((product) => (
-                <Link
-                  to={`/product/${product._id}`}
-                  key={`set2-${product._id}`}
-                  className="w-[260px] md:w-[300px] bg-[#131313] flex-shrink-0 group cursor-pointer border border-[#474747]/10 transition-all duration-300"
-                >
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      style={{ filter: "grayscale(70%)" }}
-                      onMouseEnter={(e) =>
-                        (e.currentTarget.style.filter = "grayscale(0%)")
-                      }
-                      onMouseLeave={(e) =>
-                        (e.currentTarget.style.filter = "grayscale(70%)")
-                      }
-                    />
-                    <div className="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-                    {product.stock < 10 && (
-                      <div className="absolute top-3 left-3 bg-[#FFD700] text-[#1A1A1A] px-3 py-1 text-[10px] font-bold tracking-wider uppercase">
-                        Only {product.stock} left
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-5 md:p-6">
-                    <p
-                      className="text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase"
-                      style={{ fontFamily: "'Manrope', sans-serif" }}
-                    >
-                      {product.category || "Exclusive Piece"}
-                    </p>
-                    <div className="flex justify-between items-center">
-                      <h3
-                        className="text-base md:text-lg text-[#FFD700] truncate mr-2"
-                        style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
-                      >
-                        {product.name}
-                      </h3>
-                      <span
-                        className="text-sm text-[#E5E2E1] whitespace-nowrap"
-                        style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
-                      >
-                        ₹ {product.price?.toLocaleString()}
-                      </span>
+            {carouselProducts.map((product) => (
+              <Link
+                to={`/product/${product._id}`}
+                key={`set2-${product._id}`}
+                className="w-[260px] md:w-[300px] bg-[#131313] flex-shrink-0 group cursor-pointer border border-[#474747]/10 transition-all duration-300"
+                onClick={(e) => isDragging && e.preventDefault()}
+                draggable={false}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    style={{ filter: "grayscale(70%)" }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.filter = "grayscale(0%)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.filter = "grayscale(70%)")
+                    }
+                    draggable={false}
+                  />
+                  <div className="absolute inset-0 bg-[#FFD700]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                  {product.stock < 10 && (
+                    <div className="absolute top-3 left-3 bg-[#FFD700] text-[#1A1A1A] px-3 py-1 text-[10px] font-bold tracking-wider uppercase">
+                      Only {product.stock} left
                     </div>
+                  )}
+                </div>
+                <div className="p-5 md:p-6">
+                  <p
+                    className="text-[10px] tracking-widest text-[#E5E2E1]/50 mb-2 uppercase"
+                    style={{ fontFamily: "'Manrope', sans-serif" }}
+                  >
+                    {product.category || "Exclusive Piece"}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <h3
+                      className="text-base md:text-lg text-[#FFD700] truncate mr-2"
+                      style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
+                    >
+                      {product.name}
+                    </h3>
+                    <span
+                      className="text-sm text-[#E5E2E1] whitespace-nowrap"
+                      style={{ fontFamily: "'Noto Serif', 'Georgia', serif" }}
+                    >
+                      ₹ {product.price?.toLocaleString()}
+                    </span>
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

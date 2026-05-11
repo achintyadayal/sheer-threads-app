@@ -22,7 +22,7 @@ function UserHeader() {
       {/* Mobile Menu Button (Left) */}
       <div className="flex items-center gap-4">
         <button
-          className="md:hidden text-[#FFD700] hover:text-[#FFE16D] transition-colors duration-300 active:scale-95"
+          className="md:hidden text-[#FFD700] hover:text-[#FFE16D] transition-colors duration-300 active:scale-95 relative z-[60]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -109,7 +109,7 @@ function UserHeader() {
 
       {/* Mobile Navigation Overlay */}
       <div
-        className={`fixed inset-0 bg-[#131313]/95 backdrop-blur-xl text-white flex flex-col justify-center items-center space-y-8 text-xl font-semibold transition-transform duration-300 md:hidden z-40 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-[#131313]/95 backdrop-blur-xl text-white flex flex-col justify-center items-center space-y-8 text-xl font-semibold transition-all duration-300 md:hidden z-[55] ${isMobileMenuOpen ? "translate-x-0 opacity-100 pointer-events-auto" : "translate-x-full opacity-0 pointer-events-none"
           }`}
       >
         <Link
