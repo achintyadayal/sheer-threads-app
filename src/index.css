@@ -7,26 +7,26 @@ html {
 
 body {
   font-family: 'Manrope', sans-serif;
-  background-color: #1A1A1A;
-  color: #E5E2E1;
+  background-color: #FAF9F6;
+  color: #1b1c1c;
 }
 
-/* Custom scrollbar for the dark theme */
+/* Custom scrollbar for the light theme */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1A1A1A;
+  background: #FAF9F6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #474747;
+  background: #d1c5b5;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFD700;
+  background: #c8a66d;
 }
 
 /* Infinite Carousel Animation */

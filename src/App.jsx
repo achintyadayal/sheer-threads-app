@@ -8,6 +8,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import CollectionPage from "./pages/CollectionPage";
 import ProductDetails from "./pages/ProductDetails";
 import NewArrivals from "./pages/NewArrivals";
+import WishlistPage from "./pages/WishlistPage";
 import ProfilePage from "./pages/ProfilePage";
 import UserHeader from "./components/user/UserHeader";
 import Signup from "./pages/Signup";
@@ -55,6 +56,15 @@ function App() {
           element={
             <UserProtectedRoute>
               <NewArrivals />
+            </UserProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <UserProtectedRoute>
+              <WishlistPage />
             </UserProtectedRoute>
           }
         />

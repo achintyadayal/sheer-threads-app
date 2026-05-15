@@ -19,11 +19,24 @@ export const AppProvider = ({ children }) => {
   });
   const [showCart, setShowCart] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [wishlist, setWishlist] = useState(() => {
+    try {
+      const savedWishlist = localStorage.getItem("wishlist");
+      return savedWishlist ? JSON.parse(savedWishlist) : [];
+    } catch {
+      return [];
+    }
+  });
 
   // Sync cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  // Sync wishlist to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
 
   // Fetch products from backend
   useEffect(() => {
@@ -73,6 +86,25 @@ export const AppProvider = ({ children }) => {
     setCart([]);
   };
 
+  const toggleWishlist = (product) => {
+    setWishlist((prev) => {
+      const prodId = product._id || product.id;
+      const exists = prev.find((item) => (item._id || item.id) === prodId);
+      if (exists) {
+        return prev.filter((item) => (item._id || item.id) !== prodId);
+      }
+      return [...prev, product];
+    });
+  };
+
+  const removeFromWishlist = (id) => {
+    setWishlist((prev) => prev.filter((item) => (item._id || item.id) !== id));
+  };
+
+  const isInWishlist = (id) => {
+    return wishlist.some((item) => (item._id || item.id) === id);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -85,7 +117,11 @@ export const AppProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateCartQuantity,
-        clearCart
+        clearCart,
+        wishlist,
+        toggleWishlist,
+        removeFromWishlist,
+        isInWishlist
       }}
     >
       {children}
